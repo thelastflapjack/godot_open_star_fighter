@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3 uid="uid://bdn8bexlsufig"]
+
+[ext_resource type="Script" path="res://src/ship_controllers/player/hud/target_marker.gd" id="1_vi4ix"]
+[ext_resource type="Texture2D" uid="uid://b5slyy4f8dmmp" path="res://src/ship_controllers/player/hud/marker_tracker.png" id="2_4rwfy"]
+[ext_resource type="FontFile" uid="uid://d2fgugats8up0" path="res://fonts/Orbitron-Regular.ttf" id="3_feuj6"]
+
+[sub_resource type="FontVariation" id="FontVariation_j6lod"]
+base_font = ExtResource("3_feuj6")
+variation_embolden = 0.46
+spacing_glyph = 3
+
+[node name="TargetMarker" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_vi4ix")
+
+[node name="MarkerTrack" type="TextureRect" parent="."]
+modulate = Color(1, 0.384314, 0, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_4rwfy")
+
+[node name="LabelRange" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = 33.0
+offset_right = 23.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.733333, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = SubResource("FontVariation_j6lod")
+theme_override_font_sizes/font_size = 12
+text = "1234"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_top = -27.0
+offset_right = 9.0
+offset_bottom = 1.0
+rotation = -0.619592
+color = Color(0, 0.827451, 0.639216, 1)

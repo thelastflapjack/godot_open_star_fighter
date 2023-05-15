@@ -1,0 +1,122 @@
+[gd_scene load_steps=2 format=3 uid="uid://cr2cqnjgddj0m"]
+
+[ext_resource type="Script" path="res://src/menu_ui/main_menu/credits_page/credits_page.gd" id="1_k4w3h"]
+
+[node name="CreditsPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k4w3h")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+anchor_left = 0.020202
+anchor_top = 0.037037
+anchor_right = 0.613131
+anchor_bottom = 0.962963
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="BtnBack" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[node name="Title" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"Header3"
+text = "Credits"
+
+[node name="PanelContainer" type="Panel" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer"]
+layout_mode = 0
+anchor_left = 0.020592
+anchor_top = 0.0175055
+anchor_right = 0.979408
+anchor_bottom = 0.982495
+size_flags_horizontal = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 25
+
+[node name="Credit1" type="Label" parent="VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"CreditLabel"
+text = "Thing
+Creator
+Source
+License"
+
+[node name="Credit2" type="Label" parent="VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"CreditLabel"
+text = "Thing
+Creator
+Source
+License"
+
+[node name="Credit3" type="Label" parent="VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"CreditLabel"
+text = "Thing
+Creator
+Source
+License"
+
+[node name="Credit4" type="Label" parent="VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"CreditLabel"
+text = "Thing
+Creator
+Source
+License"
+
+[node name="Credit5" type="Label" parent="VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"CreditLabel"
+text = "Thing
+Creator
+Source
+License"
+
+[node name="Credit6" type="Label" parent="VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"CreditLabel"
+text = "Thing
+Creator
+Source
+License"
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MadeWithLabel" type="Label" parent="VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"CreditLabel"
+text = "Made using:
+Godot, Blender, Inkscape, Krita and Audacity"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MadeByLabel" type="Label" parent="VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"CreditLabel"
+text = "Made by: you"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/BtnBack" to="." method="_on_btn_back_pressed"]

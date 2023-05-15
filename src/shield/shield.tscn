@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://dl2kq4t4840s8"]
+
+[ext_resource type="Script" path="res://src/shield/shield.gd" id="1_v7jn3"]
+[ext_resource type="Texture2D" uid="uid://dsk6yibve36sf" path="res://particle_textures/spark_03.png" id="2_x8qf0"]
+[ext_resource type="Material" uid="uid://col8hko1dragb" path="res://src/shield/shield.material" id="3_jt2i8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v50qf"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+albedo_color = Color(0, 1, 0.54902, 1)
+albedo_texture = ExtResource("2_x8qf0")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_4es30"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.789298, 0.872727), 0.0, 0.0, 0, 0, Vector2(1, 0.163636), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_gprwm"]
+curve = SubResource("Curve_4es30")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_suoip"]
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 9.0
+initial_velocity_max = 10.0
+angular_velocity_min = 80.5
+angular_velocity_max = 313.05
+angle_max = 720.0
+scale_curve = SubResource("CurveTexture_gprwm")
+
+[sub_resource type="QuadMesh" id="QuadMesh_jybv2"]
+size = Vector2(7, 7)
+
+[node name="Shield" type="StaticBody3D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_v7jn3")
+
+[node name="TimerRecharge" type="Timer" parent="."]
+one_shot = true
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_v50qf")
+emitting = false
+amount = 36
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+visibility_aabb = AABB(-8.03424, -7.93199, -7.99042, 16.0685, 15.864, 15.9808)
+process_material = SubResource("ParticleProcessMaterial_suoip")
+draw_pass_1 = SubResource("QuadMesh_jybv2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("3_jt2i8")
+instance_shader_parameters/visibility = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+
+[connection signal="timeout" from="TimerRecharge" to="." method="_on_timer_recharge_timeout"]

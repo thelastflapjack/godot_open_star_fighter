@@ -1,0 +1,67 @@
+[gd_scene load_steps=2 format=3 uid="uid://dljbgec784dja"]
+
+[ext_resource type="Script" path="res://src/menu_ui/main_menu/home/home.gd" id="1_nwxu2"]
+
+[node name="Home" type="Control"]
+layout_mode = 3
+anchor_right = 0.999999
+anchor_bottom = 1.0
+script = ExtResource("1_nwxu2")
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 0
+anchor_top = 0.0466667
+anchor_right = 1.0
+anchor_bottom = 0.266667
+offset_bottom = -1.52588e-05
+theme_override_font_sizes/font_size = 80
+text = "Open Space Fighter"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+layout_mode = 0
+anchor_left = 0.0361328
+anchor_top = 0.473333
+anchor_right = 0.229492
+anchor_bottom = 0.965
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="BtnPlayTDM" type="Button" parent="Buttons"]
+layout_mode = 2
+text = "Team Death Match"
+
+[node name="BtnPlayHoop" type="Button" parent="Buttons"]
+layout_mode = 2
+text = "Hoop Race"
+
+[node name="HSeparator" type="HSeparator" parent="Buttons"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="BtnControls" type="Button" parent="Buttons"]
+layout_mode = 2
+text = "Controls"
+
+[node name="BtnSettings" type="Button" parent="Buttons"]
+visible = false
+layout_mode = 2
+text = "Settings"
+
+[node name="BtnCredits" type="Button" parent="Buttons"]
+visible = false
+layout_mode = 2
+text = "Credits"
+
+[node name="BtnQuit" type="Button" parent="Buttons"]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="Buttons/BtnPlayTDM" to="." method="_on_btn_play_pressed" binds= ["level_tdm"]]
+[connection signal="pressed" from="Buttons/BtnPlayHoop" to="." method="_on_btn_play_pressed" binds= ["level_hoops_1"]]
+[connection signal="pressed" from="Buttons/BtnControls" to="." method="_on_btn_controls_pressed"]
+[connection signal="pressed" from="Buttons/BtnSettings" to="." method="_on_btn_settings_pressed"]
+[connection signal="pressed" from="Buttons/BtnCredits" to="." method="_on_btn_credits_pressed"]
+[connection signal="pressed" from="Buttons/BtnQuit" to="." method="_on_btn_quit_pressed"]

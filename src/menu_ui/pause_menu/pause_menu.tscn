@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://dw1yjh18pjgoq"]
+
+[ext_resource type="Script" path="res://src/menu_ui/pause_menu/pause_menu.gd" id="1_68n7r"]
+[ext_resource type="PackedScene" uid="uid://dusgc3uarpow2" path="res://src/menu_ui/pause_menu/home/Home.tscn" id="2_uij8x"]
+[ext_resource type="Material" uid="uid://cv0w14ovdcc0r" path="res://src/menu_ui/pause_menu/background_blur.material" id="3_gphkd"]
+[ext_resource type="PackedScene" uid="uid://deltucmobo5dt" path="res://src/menu_ui/controls_page/controls_page.tscn" id="4_6c0sk"]
+
+[sub_resource type="Animation" id="1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="2"]
+resource_name = "popup"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bieey"]
+_data = {
+"RESET": SubResource("1"),
+"popup": SubResource("2")
+}
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_68n7r")
+
+[node name="Background" type="ColorRect" parent="."]
+material = ExtResource("3_gphkd")
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Pages" type="Control" parent="."]
+process_mode = 2
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Home" parent="Pages" instance=ExtResource("2_uij8x")]
+layout_mode = 1
+
+[node name="ControlsPage" parent="Pages" instance=ExtResource("4_6c0sk")]
+layout_mode = 1
+cords = Vector2(-1, 0)
+_back_page_name = "Home"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+process_mode = 2
+libraries = {
+"": SubResource("AnimationLibrary_bieey")
+}

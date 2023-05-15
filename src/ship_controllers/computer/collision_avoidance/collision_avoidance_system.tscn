@@ -1,0 +1,83 @@
+[gd_scene load_steps=2 format=3 uid="uid://crm6jwxqy6ahr"]
+
+[ext_resource type="Script" path="res://src/ship_controllers/computer/collision_avoidance/collision_avoidance_system.gd" id="1_2gef4"]
+
+[node name="CollisionAvoidanceSystem" type="Node3D"]
+script = ExtResource("1_2gef4")
+
+[node name="RayCast3D1" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -10)
+collision_mask = 3
+debug_shape_thickness = 5
+
+[node name="RayCast3D6" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.258819, -0.965926, 0, 0.965926, 0.258819, 0, 0, 0)
+target_position = Vector3(0, 0, -10)
+collision_mask = 3
+debug_shape_thickness = 5
+
+[node name="RayCast3D7" type="RayCast3D" parent="."]
+transform = Transform3D(-4.2222e-08, -0.258819, 0.965926, 1, 1.91069e-15, 4.37114e-08, -1.13133e-08, 0.965926, 0.258819, 0, 0, 0)
+target_position = Vector3(0, 0, -10)
+collision_mask = 3
+debug_shape_thickness = 5
+
+[node name="RayCast3D12" type="RayCast3D" parent="."]
+transform = Transform3D(-5.75737e-08, 0.258819, -0.965926, -1, 2.66454e-15, 5.96046e-08, 1.54268e-08, 0.965926, 0.258819, 0, 0, 0)
+target_position = Vector3(0, 0, -10)
+collision_mask = 3
+debug_shape_thickness = 5
+
+[node name="RayCast3D13" type="RayCast3D" parent="."]
+transform = Transform3D(-1, 4.57522e-15, 1.03316e-07, 9.97956e-08, -0.258819, 0.965926, 2.67402e-08, 0.965926, 0.258819, 0, 0, 0)
+target_position = Vector3(0, 0, -10)
+collision_mask = 3
+debug_shape_thickness = 5
+
+[node name="RayCast3D4" type="RayCast3D" parent="."]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 0, 0, 0)
+target_position = Vector3(0, 0, -10)
+collision_mask = 3
+debug_shape_thickness = 5
+
+[node name="RayCast3D11" type="RayCast3D" parent="."]
+transform = Transform3D(0.965926, 0, 0.258819, -0.0669873, 0.965926, 0.25, -0.25, -0.258819, 0.933013, 0, 0, 0)
+target_position = Vector3(0, 0, -10)
+collision_mask = 3
+debug_shape_thickness = 5
+
+[node name="RayCast3D10" type="RayCast3D" parent="."]
+transform = Transform3D(0.965926, 0, 0.258819, 0.0669873, 0.965926, -0.25, -0.25, 0.258819, 0.933013, 0, 0, 0)
+target_position = Vector3(0, 0, -10)
+collision_mask = 3
+debug_shape_thickness = 5
+
+[node name="RayCast3D5" type="RayCast3D" parent="."]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 0, 0, 0)
+target_position = Vector3(0, 0, -10)
+collision_mask = 3
+debug_shape_thickness = 5
+
+[node name="RayCast3D8" type="RayCast3D" parent="."]
+transform = Transform3D(0.965926, 0, -0.258819, -0.0669873, 0.965926, -0.25, 0.25, 0.258819, 0.933013, 0, 0, 0)
+target_position = Vector3(0, 0, -10)
+collision_mask = 3
+debug_shape_thickness = 5
+
+[node name="RayCast3D9" type="RayCast3D" parent="."]
+transform = Transform3D(0.965926, -3.34e-09, -0.258819, 0.0669873, 0.965926, 0.25, 0.25, -0.258819, 0.933013, 0, 0, 0)
+target_position = Vector3(0, 0, -10)
+collision_mask = 3
+debug_shape_thickness = 5
+
+[node name="RayCast3D2" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0)
+target_position = Vector3(0, 0, -10)
+collision_mask = 3
+debug_shape_thickness = 5
+
+[node name="RayCast3D3" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0)
+target_position = Vector3(0, 0, -10)
+collision_mask = 3
+debug_shape_thickness = 5

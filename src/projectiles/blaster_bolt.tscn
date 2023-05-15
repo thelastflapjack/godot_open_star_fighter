@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bx6gmdhbkukj6"]
+
+[ext_resource type="Script" path="res://src/projectiles/blaster_bolt.gd" id="1_vh84j"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_lqlm1"]
+top_radius = 0.1
+bottom_radius = 0.1
+radial_segments = 4
+rings = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2t1u1"]
+shading_mode = 0
+albedo_color = Color(0.494118, 0.960784, 0, 1)
+
+[node name="BlasterBolt" type="Node3D"]
+script = ExtResource("1_vh84j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -1)
+mesh = SubResource("CylinderMesh_lqlm1")
+surface_material_override/0 = SubResource("StandardMaterial3D_2t1u1")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, 2)
+collision_mask = 7
+debug_shape_custom_color = Color(1, 0, 1, 1)

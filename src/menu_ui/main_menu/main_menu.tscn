@@ -1,0 +1,79 @@
+[gd_scene load_steps=11 format=3 uid="uid://b4aks7fmbunpu"]
+
+[ext_resource type="Script" path="res://src/menu_ui/mulit_page_ui/manager.gd" id="1_vdjtv"]
+[ext_resource type="PackedScene" uid="uid://dljbgec784dja" path="res://src/menu_ui/main_menu/home/home.tscn" id="2_br8si"]
+[ext_resource type="Texture2D" uid="uid://brscgvbyifk8k" path="res://src/environment/star_field_3.hdr" id="4_4fi5y"]
+[ext_resource type="Script" path="res://src/menu_ui/main_menu/3d_background.gd" id="4_wnide"]
+[ext_resource type="PackedScene" uid="uid://byhlesvjxe52n" path="res://src/asteroids/asteroid_big_1.tscn" id="6_wj85h"]
+[ext_resource type="PackedScene" uid="uid://deltucmobo5dt" path="res://src/menu_ui/controls_page/controls_page.tscn" id="12"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_pqrih"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_qeqir"]
+panorama = ExtResource("4_4fi5y")
+
+[sub_resource type="Sky" id="Sky_xlos8"]
+sky_material = SubResource("PanoramaSkyMaterial_qeqir")
+
+[sub_resource type="Environment" id="Environment_3hge2"]
+background_mode = 2
+sky = SubResource("Sky_xlos8")
+ambient_light_source = 2
+ambient_light_color = Color(0.741176, 0.741176, 0.741176, 1)
+reflected_light_source = 1
+tonemap_mode = 3
+adjustment_enabled = true
+adjustment_saturation = 1.5
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vdjtv")
+
+[node name="Pages" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Home" parent="Pages" instance=ExtResource("2_br8si")]
+layout_mode = 1
+
+[node name="ControlsPage" parent="Pages" instance=ExtResource("12")]
+layout_mode = 1
+cords = Vector2(1, 0)
+_back_page_name = "Home"
+
+[node name="Background" type="Node3D" parent="."]
+script = ExtResource("4_wnide")
+_noise = SubResource("FastNoiseLite_pqrih")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Background"]
+environment = SubResource("Environment_3hge2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Background/WorldEnvironment"]
+transform = Transform3D(0.861002, -0.301581, 0.409543, -0.0742119, 0.72212, 0.687776, -0.503159, -0.622569, 0.599365, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Background"]
+transform = Transform3D(0.982632, -0.155634, -0.101056, 0.156434, 0.987688, -1.83971e-09, 0.0998121, -0.0158087, 0.994881, 0, 0, 0)
+
+[node name="AsteroidBig1_1" parent="Background" instance=ExtResource("6_wj85h")]
+transform = Transform3D(0.517055, -0.327311, -0.790899, 0.306904, 0.933454, -0.185667, 0.799039, -0.14673, 0.583101, 79.9864, -70.1937, -131.54)
+
+[node name="AsteroidBig1_5" parent="Background" instance=ExtResource("6_wj85h")]
+transform = Transform3D(-0.457147, -0.086323, 0.885192, 0.141737, 0.975488, 0.168327, -0.878024, 0.202415, -0.433706, 306.222, -155.729, -331.5)
+
+[node name="AsteroidBig1_2" parent="Background" instance=ExtResource("6_wj85h")]
+transform = Transform3D(0.250785, -0.881338, -0.400438, 0.723995, -0.103831, 0.681946, -0.642602, -0.460937, 0.612046, 154.472, -83.5314, -253.965)
+
+[node name="AsteroidBig1_3" parent="Background" instance=ExtResource("6_wj85h")]
+transform = Transform3D(-0.870021, 0.35228, 0.344909, 0.412813, 0.138069, 0.90029, 0.269532, 0.925654, -0.265549, -65.6126, 45, -126.467)
+
+[node name="AsteroidBig1_4" parent="Background" instance=ExtResource("6_wj85h")]
+transform = Transform3D(0.030398, 0.935263, -0.352646, -0.309055, 0.344315, 0.886529, 0.950558, 0.082038, 0.299514, -70.4494, 2.34968, -748.569)

@@ -1,0 +1,19 @@
+[gd_resource type="Environment" load_steps=4 format=3 uid="uid://74uudprqxn1t"]
+
+[ext_resource type="Texture2D" uid="uid://brscgvbyifk8k" path="res://src/environment/star_field_3.hdr" id="1_kmxxd"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_3ejr1"]
+panorama = ExtResource("1_kmxxd")
+
+[sub_resource type="Sky" id="Sky_h1jpe"]
+sky_material = SubResource("PanoramaSkyMaterial_3ejr1")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_h1jpe")
+ambient_light_source = 2
+ambient_light_color = Color(0.741176, 0.741176, 0.741176, 1)
+reflected_light_source = 1
+tonemap_mode = 3
+adjustment_enabled = true
+adjustment_saturation = 1.5

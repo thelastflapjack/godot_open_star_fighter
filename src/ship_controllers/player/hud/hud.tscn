@@ -1,0 +1,348 @@
+[gd_scene load_steps=12 format=3 uid="uid://cabvahs8ot1h5"]
+
+[ext_resource type="PackedScene" uid="uid://bdn8bexlsufig" path="res://src/ship_controllers/player/hud/target_marker.tscn" id="1_djnns"]
+[ext_resource type="Script" path="res://src/ship_controllers/player/hud/hud.gd" id="1_kyuli"]
+[ext_resource type="Texture2D" uid="uid://bchscmmvfvoqb" path="res://src/ship_controllers/player/hud/marker_intercept.png" id="3_0as7u"]
+[ext_resource type="Texture2D" uid="uid://whtjclmn6fja" path="res://src/ship_controllers/player/hud/off_screen_marker.png" id="4_suv0y"]
+[ext_resource type="Texture2D" uid="uid://5cv6dot4hnn" path="res://src/ship_controllers/player/hud/marker_lock.png" id="5_5meka"]
+[ext_resource type="FontFile" uid="uid://d2fgugats8up0" path="res://fonts/Orbitron-Regular.ttf" id="6_f1dt3"]
+
+[sub_resource type="FontVariation" id="FontVariation_uap60"]
+base_font = ExtResource("6_f1dt3")
+variation_embolden = 0.46
+spacing_glyph = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l6w6r"]
+bg_color = Color(0.6, 0.6, 0.6, 0.392157)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qttxo"]
+bg_color = Color(0.184314, 0.803922, 0.654902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rxisf"]
+bg_color = Color(0.6, 0.6, 0.6, 0.392157)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_etmr8"]
+bg_color = Color(0.721569, 0.631373, 0, 1)
+
+[node name="Hud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kyuli")
+
+[node name="Dot" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.498264
+anchor_top = 0.496914
+anchor_right = 0.501736
+anchor_bottom = 0.503086
+offset_bottom = -6.10352e-05
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 1, 0, 1)
+
+[node name="LabelSpeed" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.922743
+anchor_top = 0.921296
+anchor_right = 0.997396
+anchor_bottom = 0.990741
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 28
+text = "20.0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TargetMarkers" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TargetMarker1" parent="TargetMarkers" instance=ExtResource("1_djnns")]
+layout_mode = 1
+
+[node name="TargetMarker2" parent="TargetMarkers" instance=ExtResource("1_djnns")]
+layout_mode = 1
+
+[node name="TargetMarker3" parent="TargetMarkers" instance=ExtResource("1_djnns")]
+layout_mode = 1
+
+[node name="TargetMarker4" parent="TargetMarkers" instance=ExtResource("1_djnns")]
+layout_mode = 1
+
+[node name="TargetMarker5" parent="TargetMarkers" instance=ExtResource("1_djnns")]
+layout_mode = 1
+
+[node name="TargetMarker6" parent="TargetMarkers" instance=ExtResource("1_djnns")]
+layout_mode = 1
+
+[node name="TargetMarker7" parent="TargetMarkers" instance=ExtResource("1_djnns")]
+layout_mode = 1
+
+[node name="TargetMarker8" parent="TargetMarkers" instance=ExtResource("1_djnns")]
+layout_mode = 1
+
+[node name="TargetLeadMarker" type="Control" parent="."]
+modulate = Color(1, 0.384314, 0, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="TargetLeadMarker"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_0as7u")
+
+[node name="OffScreenPointers" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TargetOffScreenPointer" type="Control" parent="OffScreenPointers"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="OffScreenPointers/TargetOffScreenPointer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -200.0
+offset_right = 20.0
+offset_bottom = -160.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_suv0y")
+
+[node name="TargetOffScreenPointer2" type="Control" parent="OffScreenPointers"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="OffScreenPointers/TargetOffScreenPointer2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -200.0
+offset_right = 20.0
+offset_bottom = -160.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_suv0y")
+
+[node name="TargetOffScreenPointer3" type="Control" parent="OffScreenPointers"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="OffScreenPointers/TargetOffScreenPointer3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -200.0
+offset_right = 20.0
+offset_bottom = -160.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_suv0y")
+
+[node name="TargetOffScreenPointer4" type="Control" parent="OffScreenPointers"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="OffScreenPointers/TargetOffScreenPointer4"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -200.0
+offset_right = 20.0
+offset_bottom = -160.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_suv0y")
+
+[node name="TargetOffScreenPointer5" type="Control" parent="OffScreenPointers"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="OffScreenPointers/TargetOffScreenPointer5"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -200.0
+offset_right = 20.0
+offset_bottom = -160.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_suv0y")
+
+[node name="LockMarker" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarkerLock" type="TextureRect" parent="LockMarker"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("5_5meka")
+
+[node name="LabelLock" type="Label" parent="LockMarker"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -51.0
+offset_right = 25.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.733333, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = SubResource("FontVariation_uap60")
+theme_override_font_sizes/font_size = 12
+text = "LOCK"
+vertical_alignment = 1
+
+[node name="StatBars" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4
+anchor_top = 1.0
+anchor_right = 0.6
+anchor_bottom = 1.0
+offset_left = -159.0
+offset_top = -29.0
+offset_right = 159.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="Shield" type="ProgressBar" parent="StatBars"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_l6w6r")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qttxo")
+step = 1.0
+value = 50.0
+show_percentage = false
+
+[node name="Hull" type="ProgressBar" parent="StatBars"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_rxisf")
+theme_override_styles/fill = SubResource("StyleBoxFlat_etmr8")
+step = 1.0
+value = 50.0
+show_percentage = false

@@ -1,0 +1,52 @@
+[gd_scene load_steps=10 format=3 uid="uid://bfg70hr0bs0ns"]
+
+[ext_resource type="Script" path="res://src/ship_controllers/computer/ship_control_computer.gd" id="1_o48r4"]
+[ext_resource type="Script" path="res://src/state_machine/state_machine.gd" id="2_gmrbp"]
+[ext_resource type="PackedScene" uid="uid://crm6jwxqy6ahr" path="res://src/ship_controllers/computer/collision_avoidance/collision_avoidance_system.tscn" id="2_u1dus"]
+[ext_resource type="Script" path="res://src/ship_controllers/computer/states/wander.gd" id="3_5o2pb"]
+[ext_resource type="Script" path="res://src/ship_controllers/computer/states/pursue.gd" id="4_rylmd"]
+[ext_resource type="Script" path="res://src/ship_controllers/computer/states/attack.gd" id="5_n53g7"]
+[ext_resource type="Script" path="res://src/ship_controllers/computer/states/evade.gd" id="6_lj607"]
+[ext_resource type="Script" path="res://src/ship_controllers/computer/states/flee.gd" id="7_ks0g0"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_e0eb8"]
+radius = 200.0
+
+[node name="ShipControllerComputer" type="Node"]
+script = ExtResource("1_o48r4")
+
+[node name="ThreatDetectionArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ThreatDetectionArea"]
+shape = SubResource("SphereShape3D_e0eb8")
+
+[node name="CollisionAvoidanceSystem" parent="." instance=ExtResource("2_u1dus")]
+
+[node name="InitialTargetDelayTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("_initial_state")]
+script = ExtResource("2_gmrbp")
+_initial_state = NodePath("Pursue")
+
+[node name="Wander" type="Node" parent="StateMachine"]
+script = ExtResource("3_5o2pb")
+
+[node name="Pursue" type="Node" parent="StateMachine"]
+script = ExtResource("4_rylmd")
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("5_n53g7")
+
+[node name="Evade" type="Node" parent="StateMachine"]
+script = ExtResource("6_lj607")
+
+[node name="Flee" type="Node" parent="StateMachine"]
+script = ExtResource("7_ks0g0")
+
+[connection signal="body_entered" from="ThreatDetectionArea" to="." method="_on_threat_detection_area_body_entered"]
+[connection signal="body_exited" from="ThreatDetectionArea" to="." method="_on_threat_detection_area_body_exited"]
+[connection signal="timeout" from="InitialTargetDelayTimer" to="." method="_on_initial_target_delay_timer_timeout"]

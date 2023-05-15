@@ -1,0 +1,294 @@
+[gd_scene load_steps=11 format=3 uid="uid://drhrgk6mo4yyq"]
+
+[ext_resource type="Script" path="res://src/levels/modes/level_tdm.gd" id="1_ervta"]
+[ext_resource type="PackedScene" uid="uid://df4xgtov8ytnu" path="res://src/game_camera_rig/game_camera_rig.tscn" id="2_gnrgo"]
+[ext_resource type="PackedScene" uid="uid://dw1yjh18pjgoq" path="res://src/menu_ui/pause_menu/pause_menu.tscn" id="3_rqx71"]
+[ext_resource type="Material" uid="uid://cv0w14ovdcc0r" path="res://src/menu_ui/pause_menu/background_blur.material" id="4_orbr3"]
+[ext_resource type="Environment" uid="uid://74uudprqxn1t" path="res://src/environment/space_env.tres" id="5_c8fkf"]
+[ext_resource type="PackedScene" uid="uid://byhlesvjxe52n" path="res://src/asteroids/asteroid_big_1.tscn" id="6_qjj8s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fx60u"]
+bg_color = Color(0.6, 0.6, 0.6, 0.392157)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ip668"]
+bg_color = Color(0, 0, 1, 0.588235)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b6c6m"]
+bg_color = Color(0.6, 0.6, 0.6, 0.392157)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c0fss"]
+bg_color = Color(1, 0, 0, 0.588235)
+
+[node name="Level_TDM" type="Node3D"]
+process_mode = 3
+script = ExtResource("1_ervta")
+
+[node name="SpawnTimerBlue" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="SpawnTimerRed" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="GameCameraRig" parent="." instance=ExtResource("2_gnrgo")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("3_rqx71")]
+
+[node name="SummaryScreen" type="Control" parent="CanvasLayer"]
+process_mode = 2
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="CanvasLayer/SummaryScreen"]
+material = ExtResource("4_orbr3")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/SummaryScreen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.389757
+anchor_top = 0.498457
+anchor_right = 0.611111
+anchor_bottom = 0.714506
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "Match over"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="CanvasLayer/SummaryScreen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.458333
+anchor_top = 0.785494
+anchor_right = 0.541667
+anchor_bottom = 0.833333
+grow_horizontal = 2
+grow_vertical = 2
+text = "Main Menu"
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.0442708
+anchor_top = 0.029321
+anchor_right = 0.955729
+anchor_bottom = 0.0478395
+grow_horizontal = 2
+theme_override_constants/separation = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="ProgressBarBlue" type="ProgressBar" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_fx60u")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ip668")
+step = 1.0
+value = 50.0
+fill_mode = 1
+show_percentage = false
+
+[node name="ProgressBarRed" type="ProgressBar" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_b6c6m")
+theme_override_styles/fill = SubResource("StyleBoxFlat_c0fss")
+step = 1.0
+value = 50.0
+show_percentage = false
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("5_c8fkf")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.861002, -0.301581, 0.409543, -0.0742119, 0.72212, 0.687776, -0.503159, -0.622569, 0.599365, 0, 0, 0)
+
+[node name="SpawnPoints" type="Node" parent="."]
+
+[node name="Marker3D" type="Marker3D" parent="SpawnPoints"]
+transform = Transform3D(0.720527, 0, -0.693427, 0, 1, 0, 0.693427, 0, 0.720527, -394.387, 131.569, 275.735)
+gizmo_extents = 10.0
+
+[node name="Marker3D2" type="Marker3D" parent="SpawnPoints"]
+transform = Transform3D(0.964479, 0, -0.264159, 0, 1, 0, 0.264159, 0, 0.964479, -198.473, 48.5511, 451.445)
+gizmo_extents = 10.0
+
+[node name="Marker3D3" type="Marker3D" parent="SpawnPoints"]
+transform = Transform3D(0.911274, 0, 0.4118, 0, 1, 0, -0.4118, 0, 0.911274, 273.792, -62.5336, 374.262)
+gizmo_extents = 10.0
+
+[node name="Marker3D4" type="Marker3D" parent="SpawnPoints"]
+transform = Transform3D(0.635607, 0, 0.772013, 0, 1, 0, -0.772013, 0, 0.635607, 434.533, -143.275, 178.136)
+gizmo_extents = 10.0
+
+[node name="Marker3D5" type="Marker3D" parent="SpawnPoints"]
+transform = Transform3D(-0.680031, 0, -0.733184, 0, 1, 0, 0.733184, 0, -0.680031, -423.57, -89.0812, -170.418)
+gizmo_extents = 10.0
+
+[node name="Marker3D6" type="Marker3D" parent="SpawnPoints"]
+transform = Transform3D(-0.912728, 0, -0.40857, 0, 1, 0, 0.40857, 0, -0.912728, -301.932, -32.036, -324.05)
+gizmo_extents = 10.0
+
+[node name="Marker3D7" type="Marker3D" parent="SpawnPoints"]
+transform = Transform3D(-0.996449, 0, 0.0841997, 0, 1, 0, -0.0841997, 0, -0.996449, 114.032, 54.6273, -394.185)
+gizmo_extents = 10.0
+
+[node name="Marker3D8" type="Marker3D" parent="SpawnPoints"]
+transform = Transform3D(-0.765977, 0, 0.642868, 0, 1, 0, -0.642868, 0, -0.765977, 373.973, 185.477, -247.33)
+gizmo_extents = 10.0
+
+[node name="Marker3D9" type="Marker3D" parent="SpawnPoints"]
+transform = Transform3D(-0.294174, 0, 0.955752, 0, 1, 0, -0.955752, 0, -0.294174, 416.611, 61.8253, -123.678)
+gizmo_extents = 10.0
+
+[node name="Marker3D10" type="Marker3D" parent="SpawnPoints"]
+transform = Transform3D(0.0903373, 0, 0.995911, 0, 1, 0, -0.995911, 0, 0.0903373, 435.799, -53.2986, 31.9523)
+gizmo_extents = 10.0
+
+[node name="Marker3D11" type="Marker3D" parent="SpawnPoints"]
+transform = Transform3D(0.127722, 0, -0.99181, 0, 1, 0, 0.99181, 0, 0.127722, -440.423, 21.3187, -38.4013)
+gizmo_extents = 10.0
+
+[node name="Marker3D12" type="Marker3D" parent="SpawnPoints"]
+transform = Transform3D(0.504964, 0, -0.86314, 0, 1, 0, 0.86314, 0, 0.504964, -453.214, 196.137, 136.417)
+gizmo_extents = 10.0
+
+[node name="Marker3D13" type="Marker3D" parent="SpawnPoints"]
+transform = Transform3D(-0.984384, 0, -0.176037, 0, 1, 0, 0.176037, 0, -0.984384, -122.766, 185.477, -411.488)
+gizmo_extents = 10.0
+
+[node name="Marker3D14" type="Marker3D" parent="SpawnPoints"]
+transform = Transform3D(0.966129, 0, 0.25806, 0, 1, 0, -0.25806, 0, 0.966129, 13.6775, 185.477, 439.15)
+gizmo_extents = 10.0
+
+[node name="Asteroids" type="Node" parent="."]
+
+[node name="AsteroidBig1_1" parent="Asteroids" instance=ExtResource("6_qjj8s")]
+transform = Transform3D(0.369301, 0.201369, 0.907231, 0.259881, 0.914913, -0.308862, -0.892232, 0.349835, 0.285546, 0, -45.8646, 0)
+
+[node name="AsteroidBig1_13" parent="Asteroids" instance=ExtResource("6_qjj8s")]
+transform = Transform3D(0.369301, 0.201369, 0.907231, 0.259881, 0.914913, -0.308862, -0.892232, 0.349835, 0.285546, 209.763, 3.6209, -292.817)
+
+[node name="AsteroidBig1_2" parent="Asteroids" instance=ExtResource("6_qjj8s")]
+transform = Transform3D(0.814511, 0, 0.580149, 0.250089, 0.902315, -0.351118, -0.523477, 0.431078, 0.734945, -171.389, 65.1761, 27.7602)
+
+[node name="AsteroidBig1_29" parent="Asteroids" instance=ExtResource("6_qjj8s")]
+transform = Transform3D(0.814511, 0, 0.580149, 0.250089, 0.902315, -0.351118, -0.523477, 0.431078, 0.734945, -84.389, -146.824, 27.7602)
+
+[node name="AsteroidBig1_30" parent="Asteroids" instance=ExtResource("6_qjj8s")]
+transform = Transform3D(0.814511, 0, 0.580149, 0.250089, 0.902315, -0.351118, -0.523477, 0.431078, 0.734945, -273.882, 153.71, -33.7951)
+
+[node name="AsteroidBig1_22" parent="Asteroids" instance=ExtResource("6_qjj8s")]
+transform = Transform3D(0.814511, 0, 0.580149, 0.250089, 0.902315, -0.351118, -0.523477, 0.431078, 0.734945, -384.857, 86.9014, 439.918)
+
+[node name="AsteroidBig1_3" parent="Asteroids" instance=ExtResource("6_qjj8s")]
+transform = Transform3D(0.536399, -0.00311891, -0.843958, 0.539514, 0.770251, 0.340056, 0.648999, -0.637733, 0.414845, -160.389, -105.006, -149.24)
+
+[node name="AsteroidBig1_14" parent="Asteroids" instance=ExtResource("6_qjj8s")]
+transform = Transform3D(0.53858, 0, -0.842575, 0.537338, 0.770257, 0.34347, 0.648999, -0.637733, 0.414845, -489.815, -38.6229, 47.8526)
+
+[node name="AsteroidBig1_33" parent="Asteroids" instance=ExtResource("6_qjj8s")]
+transform = Transform3D(0.53858, 0, -0.842575, 0.537338, 0.770257, 0.34347, 0.648999, -0.637733, 0.414845, 14.6961, 120.696, 47.8528)
+
+[node name="AsteroidBig1_10" parent="Asteroids" instance=ExtResource("6_qjj8s")]
+transform = Transform3D(0.53858, 0, -0.842575, 0.537338, 0.770257, 0.34347, 0.648999, -0.637733, 0.414845, -493.511, 31.3811, -183.035)
+
+[node name="AsteroidBig1_4" parent="Asteroids" instance=ExtResource("6_qjj8s")]
+transform = Transform3D(0.769177, 0, 0.639036, 0.418749, 0.755385, -0.504027, -0.482718, 0.655282, 0.581024, 86.611, 63.9691, -73.3016)
+
+[node name="AsteroidBig1_34" parent="Asteroids" instance=ExtResource("6_qjj8s")]
+transform = Transform3D(0.769177, 0, 0.639036, 0.418749, 0.755385, -0.504027, -0.482718, 0.655282, 0.581024, -566.389, 196.687, -201.24)
+
+[node name="AsteroidBig1_17" parent="Asteroids" instance=ExtResource("6_qjj8s")]
+transform = Transform3D(0.769177, 0, 0.639036, 0.418749, 0.755385, -0.504027, -0.482718, 0.655282, 0.581024, -220.389, -28.9671, -448.924)
+
+[node name="AsteroidBig1_31" parent="Asteroids" instance=ExtResource("6_qjj8s")]
+transform = Transform3D(0.769177, 0, 0.639036, 0.418749, 0.755385, -0.504027, -0.482718, 0.655282, 0.581024, 524.308, 226.909, -453.752)
+
+[node name="AsteroidBig1_32" parent="Asteroids" instance=ExtResource("6_qjj8s")]
+transform = Transform3D(0.769177, 0, 0.639036, 0.418749, 0.755385, -0.504027, -0.482718, 0.655282, 0.581024, -307.29, -102.592, -346.332)
+
+[node name="AsteroidBig1_5" parent="Asteroids" instance=ExtResource("6_qjj8s")]
+transform = Transform3D(0.841596, -0.19339, 0.504299, 0, 0.933699, 0.358058, -0.540108, -0.30134, 0.785797, 81.611, 15.6906, 196.76)
+
+[node name="AsteroidBig1_26" parent="Asteroids" instance=ExtResource("6_qjj8s")]
+transform = Transform3D(0.841596, -0.19339, 0.504299, 0, 0.933699, 0.358058, -0.540108, -0.30134, 0.785797, 127.611, 113.691, 196.76)
+
+[node name="AsteroidBig1_19" parent="Asteroids" instance=ExtResource("6_qjj8s")]
+transform = Transform3D(0.841596, -0.19339, 0.504299, 0, 0.933699, 0.358058, -0.540108, -0.30134, 0.785797, 281.611, -44.6577, 429.76)
+
+[node name="AsteroidBig1_20" parent="Asteroids" instance=ExtResource("6_qjj8s")]
+transform = Transform3D(0.841596, -0.19339, 0.504299, 0, 0.933699, 0.358058, -0.540108, -0.30134, 0.785797, 462.611, 84.4875, -231.963)
+
+[node name="AsteroidBig1_23" parent="Asteroids" instance=ExtResource("6_qjj8s")]
+transform = Transform3D(0.841596, -0.19339, 0.504299, 0, 0.933699, 0.358058, -0.540108, -0.30134, 0.785797, 265.876, -147.25, -245.24)
+
+[node name="AsteroidBig1_15" parent="Asteroids" instance=ExtResource("6_qjj8s")]
+transform = Transform3D(0.841596, -0.19339, 0.504299, 0, 0.933699, 0.358058, -0.540108, -0.30134, 0.785797, -133.783, -50.6925, 240.991)
+
+[node name="AsteroidBig1_11" parent="Asteroids" instance=ExtResource("6_qjj8s")]
+transform = Transform3D(0.841596, -0.19339, 0.504299, 0, 0.933699, 0.358058, -0.540108, -0.30134, 0.785797, 388.512, 49.4855, 348.814)
+
+[node name="AsteroidBig1_35" parent="Asteroids" instance=ExtResource("6_qjj8s")]
+transform = Transform3D(0.841596, -0.19339, 0.504299, 0, 0.933699, 0.358058, -0.540108, -0.30134, 0.785797, -415.326, 247.428, 298.122)
+
+[node name="AsteroidBig1_24" parent="Asteroids" instance=ExtResource("6_qjj8s")]
+transform = Transform3D(0.841596, -0.19339, 0.504299, 0, 0.933699, 0.358058, -0.540108, -0.30134, 0.785797, 229.193, 115.869, 284.845)
+
+[node name="AsteroidBig1_6" parent="Asteroids" instance=ExtResource("6_qjj8s")]
+transform = Transform3D(0.924366, 0, 0.381506, -0.202737, 0.847113, 0.491221, -0.323179, -0.531413, 0.783042, -257.389, 111.041, 202.76)
+
+[node name="AsteroidBig1_18" parent="Asteroids" instance=ExtResource("6_qjj8s")]
+transform = Transform3D(0.924366, 0, 0.381506, -0.202737, 0.847113, 0.491221, -0.323179, -0.531413, 0.783042, -30.7844, 10.8627, 539.383)
+
+[node name="AsteroidBig1_9" parent="Asteroids" instance=ExtResource("6_qjj8s")]
+transform = Transform3D(0.924366, 0, 0.381506, -0.202737, 0.847113, 0.491221, -0.323179, -0.531413, 0.783042, 192.809, -15.6905, -98.9809)
+
+[node name="AsteroidBig1_16" parent="Asteroids" instance=ExtResource("6_qjj8s")]
+transform = Transform3D(0.924366, 0, 0.381506, -0.202737, 0.847113, 0.491221, -0.323179, -0.531413, 0.783042, -321.191, -50.6925, -203.259)
+
+[node name="AsteroidBig1_7" parent="Asteroids" instance=ExtResource("6_qjj8s")]
+transform = Transform3D(0.872197, -0.489154, 0, 0.453938, 0.809404, 0.372567, -0.182243, -0.324952, 0.928005, 203.671, 39.8298, 97.7543)
+
+[node name="AsteroidBig1_25" parent="Asteroids" instance=ExtResource("6_qjj8s")]
+transform = Transform3D(0.872197, -0.489154, 0, 0.453938, 0.809404, 0.372567, -0.182243, -0.324952, 0.928005, 74.5262, 223.288, 34.9921)
+
+[node name="AsteroidBig1_21" parent="Asteroids" instance=ExtResource("6_qjj8s")]
+transform = Transform3D(0.872197, -0.489154, 0, 0.453938, 0.809404, 0.372567, -0.182243, -0.324952, 0.928005, -8.32861, 106.213, -303.522)
+
+[node name="AsteroidBig1_36" parent="Asteroids" instance=ExtResource("6_qjj8s")]
+transform = Transform3D(0.872197, -0.489154, 0, 0.453938, 0.809404, 0.372567, -0.182243, -0.324952, 0.928005, -603.362, 26.5532, -353.008)
+
+[node name="AsteroidBig1_12" parent="Asteroids" instance=ExtResource("6_qjj8s")]
+transform = Transform3D(0.872197, -0.489154, 0, 0.453938, 0.809404, 0.372567, -0.182243, -0.324952, 0.928005, -114.492, -50.6925, 163.102)
+
+[node name="AsteroidBig1_27" parent="Asteroids" instance=ExtResource("6_qjj8s")]
+transform = Transform3D(0.872197, -0.489154, 0, 0.453938, 0.809404, 0.372567, -0.182243, -0.324952, 0.928005, 68.9664, -126.731, 163.102)
+
+[node name="AsteroidBig1_28" parent="Asteroids" instance=ExtResource("6_qjj8s")]
+transform = Transform3D(0.872197, -0.489154, 0, 0.453938, 0.809404, 0.372567, -0.182243, -0.324952, 0.928005, -63.7997, 206.391, 163.102)
+
+[node name="AsteroidBig1_8" parent="Asteroids" instance=ExtResource("6_qjj8s")]
+transform = Transform3D(0.439124, -0.301351, -0.846379, 0.565831, 0.824521, 0, 0.697858, -0.478907, 0.532581, -134.329, 112.248, -123.105)
+
+[connection signal="timeout" from="SpawnTimerBlue" to="." method="_on_spawn_timer_blue_timeout"]
+[connection signal="timeout" from="SpawnTimerRed" to="." method="_on_spawn_timer_red_timeout"]
+[connection signal="pressed" from="CanvasLayer/SummaryScreen/Button" to="." method="_on_summary_screen_exit_btn_pressed"]

@@ -1,0 +1,81 @@
+[gd_scene load_steps=6 format=3 uid="uid://djqustmc1kkh4"]
+
+[ext_resource type="Script" path="res://src/autoloads/scene_switcher/scene_switcher.gd" id="1_il1ju"]
+[ext_resource type="Texture2D" uid="uid://c3qeax11pua4v" path="res://icon.svg" id="2_py1p1"]
+
+[sub_resource type="Animation" id="Animation_rn4ni"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_65rlk"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p8fux"]
+_data = {
+"RESET": SubResource("Animation_rn4ni"),
+"fade_in": SubResource("Animation_65rlk")
+}
+
+[node name="SceneSwitcher" type="Node"]
+process_mode = 3
+script = ExtResource("1_il1ju")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer"]
+visible = false
+anchors_preset = -1
+anchor_left = 0.444444
+anchor_top = 0.70679
+anchor_right = 0.555556
+anchor_bottom = 0.904321
+offset_top = -3.05176e-05
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+value = 60.0
+fill_mode = 5
+texture_progress = ExtResource("2_py1p1")
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_p8fux")
+}
+
+[node name="LoaderPollTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="LoaderPollTimer" to="." method="_on_loader_poll_timer_timeout"]

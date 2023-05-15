@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://pykbf315lbco"]
+
+[ext_resource type="Script" path="res://src/hoop_path/hoop_path.gd" id="1_r2gv8"]
+
+[node name="HoopPath" type="Path3D"]
+script = ExtResource("1_r2gv8")

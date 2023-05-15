@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1hekk1hv37lk"]
+
+[ext_resource type="PackedScene" uid="uid://dl2kq4t4840s8" path="res://src/shield/shield.tscn" id="1_uc8mn"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_rop15"]
+radius = 6.5
+height = 13.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_buq6a"]
+radius = 6.5
+
+[node name="ShieldBasic" instance=ExtResource("1_uc8mn")]
+
+[node name="MeshInstance3D" parent="." index="2"]
+mesh = SubResource("SphereMesh_rop15")
+
+[node name="CollisionShape3D" parent="." index="3"]
+shape = SubResource("SphereShape3D_buq6a")

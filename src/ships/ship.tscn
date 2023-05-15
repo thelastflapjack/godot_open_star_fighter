@@ -1,0 +1,72 @@
+[gd_scene load_steps=4 format=3 uid="uid://280ws1fpdrb7"]
+
+[ext_resource type="Script" path="res://src/ships/ship.gd" id="1_jf5ff"]
+[ext_resource type="AudioStream" uid="uid://dmxwr57i6udwo" path="res://src/weapons/blaster_fire_ph.ogg" id="2_ayo7u"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tm878"]
+radius = 400.0
+
+[node name="Ship" type="CharacterBody3D"]
+process_mode = 1
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_jf5ff")
+_speed_base = null
+_speed_afterburn = null
+_acceleration = null
+_steering_speed = null
+_roll_speed_max = null
+team = null
+invulnerable = null
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.133731, -1.6254)
+
+[node name="ShipMeshInst" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+skeleton = NodePath("")
+
+[node name="Thrusters" type="Node3D" parent="."]
+
+[node name="TimerFireBlasterInterval" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
+
+[node name="TimerFireMissileInterval" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.35398)
+aabb = AABB(-2, -2, -4.43677, 4, 4, 8.87354)
+
+[node name="WeaponSlots" type="Node3D" parent="."]
+
+[node name="MissileLauncherPoint" type="Marker3D" parent="WeaponSlots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.64604, 0)
+
+[node name="BlasterSlot1" type="Marker3D" parent="WeaponSlots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, -1)
+
+[node name="BlasterSlot2" type="Marker3D" parent="WeaponSlots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -1, -1)
+
+[node name="AudioPrimary" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+stream = ExtResource("2_ayo7u")
+volume_db = -11.228
+unit_size = 20.0
+bus = &"Sound Effects"
+
+[node name="ShipDetectionArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ShipDetectionArea"]
+shape = SubResource("SphereShape3D_tm878")
+
+[connection signal="timeout" from="TimerFireBlasterInterval" to="." method="_on_timer_fire_blaster_interval_timeout"]
+[connection signal="timeout" from="TimerFireMissileInterval" to="." method="_on_timer_fire_missile_interval_timeout"]
+[connection signal="body_entered" from="ShipDetectionArea" to="." method="_on_ship_detection_area_body_entered"]
+[connection signal="body_exited" from="ShipDetectionArea" to="." method="_on_ship_detection_area_body_exited"]
